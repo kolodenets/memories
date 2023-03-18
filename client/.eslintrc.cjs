@@ -13,5 +13,7 @@ module.exports = {
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    'max-len': ['warn', { code: 80 }],
+    'react/prop-types': 0,
   },
 };
