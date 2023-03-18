@@ -1,22 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CircularProgress, Grid } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchPosts } from '../../api';
+import { useSelector } from 'react-redux';
 
 import Post from './Post/Post';
 
 function Posts({ setCurrentId }) {
-  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
 
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
-  const posts = useSelector((state) => state);
-  console.log('in posts ', posts);
-
-  return posts.length ? (
+  return !posts.length ? (
     <CircularProgress />
   ) : (
     <Grid container alignItems="stretch" spacing={3}>

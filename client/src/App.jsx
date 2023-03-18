@@ -8,14 +8,14 @@ import memories from './images/memories.png';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import { appBar, heading } from './styles';
-import { fetchPosts } from './actions';
+import { getPosts } from './actions';
 
 function App() {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(getPosts());
   }, [dispatch]);
   return (
 

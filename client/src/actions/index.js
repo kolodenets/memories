@@ -1,23 +1,23 @@
-/* eslint-disable consistent-return */
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { FETCH_ALL, CREATE } from '../constants/actionTypes';
+
 import * as api from '../api/index';
 
-export const fetchPosts = createAsyncThunk('posts/getPosts', async () => {
+export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
-    // console.log(data);
-    return data;
+
+    dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error);
   }
-});
+};
 
-export const createPost = createAsyncThunk('posts/createPost', async (post) => {
+export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
 
-    return data;
+    dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
   }
-});
+};

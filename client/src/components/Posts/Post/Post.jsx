@@ -14,7 +14,6 @@ import { ThumbUpAlt, Delete, MoreHoriz } from '@mui/icons-material';
 import moment from 'moment/moment';
 
 function Post({ post, setCurrentId }) {
-  console.log('in post ', post);
   return (
     <Card>
       <CardMedia image={post.selectedFile} title={post.title} />
