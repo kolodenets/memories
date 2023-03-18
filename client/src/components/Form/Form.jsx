@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  TextField, Button, Typography, Paper,
-} from '@mui/material';
+import { TextField, Button, Typography } from '@mui/material';
 import FileBase from 'react-file-base64';
 
 // import useStyles from './styles';
 import { createPost } from '../../actions';
+import {
+  StyledForm, StyledPaper, StyledButton, StyledDiv,
+} from './styles';
 
 function Form({ currentId, setCurrentId }) {
   const post = useSelector((state) => (currentId ? state.find((p) => p._id === currentId) : null));
@@ -50,8 +51,8 @@ function Form({ currentId, setCurrentId }) {
   };
 
   return (
-    <Paper>
-      <form
+    <StyledPaper>
+      <StyledForm
         autoComplete="off"
         noValidate
         onSubmit={handleSubmit}
@@ -93,14 +94,14 @@ function Form({ currentId, setCurrentId }) {
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
-        <div>
+        <StyledDiv>
           <FileBase
             type="file"
             multiple={false}
             onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
           />
-        </div>
-        <Button
+        </StyledDiv>
+        <StyledButton
           variant="contained"
           color="primary"
           size="large"
@@ -108,18 +109,18 @@ function Form({ currentId, setCurrentId }) {
           fullWidth
         >
           Submit
-        </Button>
+        </StyledButton>
         <Button
           variant="contained"
-          color="secondary"
+          color="error"
           size="small"
           onClick={clear}
           fullWidth
         >
           Clear
         </Button>
-      </form>
-    </Paper>
+      </StyledForm>
+    </StyledPaper>
   );
 }
 

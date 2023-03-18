@@ -3,6 +3,7 @@ import React from 'react';
 import { CircularProgress, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 
+import StyledGrid from './styles';
 import Post from './Post/Post';
 
 function Posts({ setCurrentId }) {
@@ -11,14 +12,13 @@ function Posts({ setCurrentId }) {
   return !posts.length ? (
     <CircularProgress />
   ) : (
-    <Grid container alignItems="stretch" spacing={3}>
-      Posts
+    <StyledGrid container alignItems="stretch" spacing={3}>
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6} md={6}>
           <Post post={post} setCurrentId={setCurrentId} />
         </Grid>
       ))}
-    </Grid>
+    </StyledGrid>
   );
 }
 

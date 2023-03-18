@@ -1,29 +1,34 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import {
-  Card,
-  CardActions,
-  CardMedia,
   CardContent,
   Button,
   Typography,
 } from '@mui/material';
 import { ThumbUpAlt, Delete, MoreHoriz } from '@mui/icons-material';
-// import DeleteIcon from '@mui/icons-material';
-// import MoreHoriz from '@mui/icons-material';
+
 import moment from 'moment/moment';
+import {
+  StyledCardActions,
+  StyledCardMedia,
+  StyledDetails,
+  StyledOverlay,
+  StyledOverlay2,
+  StyledTypography,
+  StyledCard,
+} from './styles';
 
 function Post({ post, setCurrentId }) {
   return (
-    <Card>
-      <CardMedia image={post.selectedFile} title={post.title} />
-      <div>
+    <StyledCard>
+      <StyledCardMedia image={post.selectedFile} title={post.title} />
+      <StyledOverlay>
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
         </Typography>
-      </div>
-      <div>
+      </StyledOverlay>
+      <StyledOverlay2>
         <Button
           style={{ color: 'white' }}
           size="small"
@@ -31,21 +36,21 @@ function Post({ post, setCurrentId }) {
         >
           <MoreHoriz fontSize="medium" />
         </Button>
-      </div>
-      <div>
+      </StyledOverlay2>
+      <StyledDetails>
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
-      </div>
-      <Typography variant="h5" gutterBottom>
+      </StyledDetails>
+      <StyledTypography variant="h5" gutterBottom>
         {post.title}
-      </Typography>
+      </StyledTypography>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {post.message}
         </Typography>
       </CardContent>
-      <CardActions>
+      <StyledCardActions>
         <Button size="small" color="primary" onClick={() => {}}>
           <ThumbUpAlt fontSize="small" />
           &nbsp; Like &nbsp;
@@ -55,8 +60,8 @@ function Post({ post, setCurrentId }) {
           <Delete fontSize="small" />
           Delete
         </Button>
-      </CardActions>
-    </Card>
+      </StyledCardActions>
+    </StyledCard>
   );
 }
 
